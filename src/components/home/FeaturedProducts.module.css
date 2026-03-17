@@ -16,7 +16,7 @@
 }
 
 .header p {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-top: 10px;
 }
 
@@ -34,12 +34,19 @@
 
 .card {
   flex: 0 0 300px;
-  background: var(--metal-surface);
+  background: white;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--metal-border);
   overflow: hidden;
   cursor: pointer;
-  transition: var(--transition-slow);
+  transition: var(--transition-pro);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--brand-orange);
+  box-shadow: var(--shadow-pro);
 }
 
 .imageBox {
@@ -59,21 +66,22 @@
 }
 
 .info {
-  padding: 20px;
+  padding: 24px;
 }
 
 .brand {
   font-size: 0.7rem;
   font-weight: 800;
   color: var(--brand-orange);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .info h4 {
   font-size: 1rem;
-  margin: 6px 0 12px;
-  line-height: 1.3;
-  color: white;
+  margin: 8px 0 15px;
+  line-height: 1.4;
+  color: var(--text-main);
+  text-align: left;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -87,11 +95,11 @@
 }
 
 .prices strong {
-  font-size: 1.2rem;
-  color: white;
+  font-size: 1.3rem;
+  color: var(--text-main);
 }
 
 .prices span {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--text-light);
 }

@@ -1,13 +1,15 @@
 .app-container {
   min-height: 100vh;
   position: relative;
+  background-color: var(--bg-primary);
 }
 
 .impact-section {
-  background: linear-gradient(180deg, var(--metal-bg) 0%, rgba(30, 41, 59, 0.5) 100%);
+  background: var(--bg-secondary);
+  padding: 100px 0;
 }
 
-/* Floating WhatsApp */
+/* Floating WhatsApp Senior */
 .whatsapp-float {
   position: fixed;
   bottom: 40px;
@@ -22,7 +24,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 3000;
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
 }
 
 .pulse {
@@ -35,30 +37,9 @@
   z-index: -1;
 }
 
-/* Premium Footer */
-.footer-premium {
-  padding: 80px 0 40px;
-  background: var(--metal-surface);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  margin-top: 80px;
-}
-
-.brand-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.brand-info h3 span {
-  color: var(--brand-orange);
-}
-
-.footer-bottom {
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
 @media (max-width: 768px) {

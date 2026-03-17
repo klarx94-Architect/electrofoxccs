@@ -2,19 +2,29 @@
   position: fixed;
   bottom: 120px;
   right: 40px;
-  background: var(--metal-surface);
-  border: 1px solid var(--brand-blue);
-  color: white;
+  background: white;
+  border: 1px solid var(--metal-border);
+  color: var(--text-main);
   padding: 12px 24px;
   border-radius: 50px;
   display: flex;
   align-items: center;
   gap: 12px;
   z-index: 2500;
-  box-shadow: var(--glow-blue);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   font-weight: 700;
   font-size: 0.85rem;
   backdrop-filter: blur(10px);
+  transition: var(--transition-pro);
+}
+
+.launcher:hover {
+  border-color: var(--brand-blue);
+  box-shadow: var(--glow-blue);
+}
+
+.launcher svg {
+  color: var(--brand-blue);
 }
 
 .drawer {
@@ -23,17 +33,17 @@
   right: 0;
   width: 400px;
   height: 100vh;
-  background: var(--metal-bg);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  background: white;
+  border-left: 1px solid var(--metal-border);
   z-index: 6000;
   display: flex;
   flex-direction: column;
-  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.05);
 }
 
 .header {
   padding: 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--metal-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +58,7 @@
 
 .aiTitle h3 {
   font-size: 1.2rem;
-  color: white;
+  color: var(--text-main);
 }
 
 .aiTitle span {
@@ -62,6 +72,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background: var(--bg-secondary);
 }
 
 .msg {
@@ -69,13 +80,15 @@
   border-radius: var(--radius-md);
   max-width: 85%;
   font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
 .bot {
-  background: var(--metal-surface);
-  color: white;
+  background: white;
+  color: var(--text-main);
   align-self: flex-start;
   border-bottom-left-radius: 4px;
+  border: 1px solid var(--metal-border);
 }
 
 .user {
@@ -87,18 +100,19 @@
 
 .inputArea {
   padding: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--metal-border);
   display: flex;
   gap: 15px;
+  background: white;
 }
 
 .inputArea input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
+  border: 1px solid var(--metal-border);
   padding: 12px 20px;
   border-radius: 50px;
-  color: white;
+  color: var(--text-main);
   outline: none;
 }
 

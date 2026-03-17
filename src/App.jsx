@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import Header from './components/layout/Header';
 import Hero from './components/home/Hero';
 import Features from './components/home/Features';
 import Categories from './components/home/Categories';
 import FeaturedProducts from './components/home/FeaturedProducts';
+import FAQ from './components/home/FAQ';
+import Footer from './components/layout/Footer';
 import ProductModal from './components/shop/ProductModal';
 import AIAgent from './components/ai/AIAgent';
 import { MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import './App.css';
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Categories />
           <FeaturedProducts onProductClick={(p) => setSelectedProduct(p)} />
         </div>
+
+        <FAQ />
 
         {/* Product Modal */}
         <ProductModal 
@@ -45,19 +49,7 @@ function App() {
         </motion.div>
       </main>
 
-      <footer className="footer-premium">
-        <div className="container">
-          <div className="footer-grid">
-            <div className="brand-info">
-              <h3>ELECTROFOX<span>CCS</span></h3>
-              <p>Tu aliado exclusivo en electrodomésticos de alta gama en Venezuela.</p>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2026 Electrofoxccs. Todos los derechos reservados.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

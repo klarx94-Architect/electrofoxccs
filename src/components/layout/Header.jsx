@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './Header.module.css';
 import logo from '../../assets/images/logo.jpg';
-import { ShoppingCart, Menu, Search, Headphones, Truck, ShieldCheck } from 'lucide-react';
+import { ShoppingCart, Menu, Search, User } from 'lucide-react';
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -14,56 +14,45 @@ const Header = () => {
     });
   }, [scrollY]);
 
-  const logoSize = useTransform(scrollY, [0, 200], [180, 50]);
-  const headerHeight = useTransform(scrollY, [0, 200], [180, 80]);
-
   return (
     <motion.header 
-      style={{ height: headerHeight }}
       className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
     >
       <div className="container">
         <div className={styles.navRow}>
           <div className={styles.left}>
-            <button className={styles.menuBtn}>
-              <Menu color="white" />
-              <span>Menu</span>
+            <button className={styles.searchBtn}>
+              <Search size={20} />
             </button>
+            <nav className={styles.navLinks}>
+              <a href="#">LINEA BLANCA</a>
+              <a href="#">TECNOLOGÍA</a>
+            </nav>
           </div>
 
-          <motion.div style={{ width: logoSize }} className={styles.logoContainer}>
+          <div className={styles.logoWrapper}>
             <img src={logo} alt="Electrofox" className={styles.logo} />
-          </motion.div>
+          </div>
 
           <div className={styles.right}>
+            <nav className={styles.navLinks}>
+              <a href="#">OFERTAS</a>
+              <a href="#">NOSOTROS</a>
+            </nav>
             <div className={styles.actions}>
-              <Search className={styles.icon} />
+              <User size={20} />
               <div className={styles.cart}>
-                <ShoppingCart className={styles.icon} />
+                <ShoppingCart size={20} />
                 <span className={styles.badge}>0</span>
               </div>
             </div>
             <button className={styles.whatsappBtn}>
-              WhatsApp
+              CONTACTO
             </button>
           </div>
         </div>
-
-        {!isScrolled && (
-          <motion.nav 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className={styles.mainNav}
-          >
-            <ul>
-              <li><a href="#">LINEA BLANCA</a></li>
-              <li><a href="#">TELEVISORES</a></li>
-              <li><a href="#">TECNOLOGÍA</a></li>
-              <li><a href="#">OFERTAS</a></li>
-              <li><a href="#">TIENDAS</a></li>
-            </ul>
-          </motion.nav>
-        )}
       </div>
     </motion.header>
   );

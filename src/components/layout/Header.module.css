@@ -3,17 +3,20 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 100px;
   z-index: 2000;
-  transition: background 0.4s ease;
+  background: white;
+  border-bottom: 1px solid var(--metal-border);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  transition: var(--transition-pro);
 }
 
 .header.scrolled {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 80px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
 }
 
 .navRow {
@@ -23,52 +26,57 @@
   width: 100%;
 }
 
-.logoContainer {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  transition: var(--transition-slow);
-}
-
-.logo {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 10px rgba(247, 148, 29, 0.2));
-}
-
-.menuBtn {
+.left, .right {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: white;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+  gap: 30px;
+  flex: 1;
 }
 
 .right {
+  justify-content: flex-end;
+}
+
+.logoWrapper {
+  flex: 0 0 160px;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  /* El logo tiene fondo blanco, al poner el header blanco se integra perfectamente */
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  transition: var(--transition-pro);
+}
+
+.header.scrolled .logo {
+  height: 45px;
+}
+
+.navLinks {
+  display: flex;
   gap: 20px;
+}
+
+.navLinks a {
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  transition: var(--transition-fast);
+}
+
+.navLinks a:hover {
+  color: var(--brand-orange);
 }
 
 .actions {
   display: flex;
-  gap: 15px;
-  color: white;
-}
-
-.icon {
+  gap: 20px;
+  color: var(--text-main);
   cursor: pointer;
-  width: 20px;
-  transition: var(--transition-fast);
-}
-
-.icon:hover {
-  color: var(--brand-orange);
 }
 
 .cart {
@@ -87,39 +95,21 @@
 }
 
 .whatsappBtn {
-  background: var(--brand-orange);
+  background: var(--brand-blue);
   color: white;
-  padding: 10px 20px;
+  padding: 10px 24px;
   border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.8rem;
-  box-shadow: var(--glow-orange);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
 }
 
-.mainNav {
-  margin-top: 20px;
-  width: 100%;
+.searchBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
 }
 
-.mainNav ul {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.mainNav a {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-}
-
-.mainNav a:hover {
-  color: white;
-}
-
-@media (max-width: 768px) {
-  .mainNav, .menuBtn span {
-    display: none;
-  }
+@media (max-width: 1024px) {
+  .navLinks { display: none; }
 }

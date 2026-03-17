@@ -1,0 +1,178 @@
+.footer {
+  padding: 100px 0 40px;
+  background: white;
+  border-top: 1px solid var(--metal-border);
+}
+
+.newsletter {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+  border: 1px solid var(--metal-border);
+}
+
+.newsText h3 {
+  text-align: left;
+  font-size: 1.8rem;
+}
+
+.newsText h3 span {
+  color: var(--brand-orange);
+}
+
+.newsText p {
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+.inputBox {
+  display: flex;
+  gap: 15px;
+  flex: 0 0 450px;
+}
+
+.inputBox input {
+  flex: 1;
+  background: white;
+  border: 1px solid var(--metal-border);
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.inputBox button {
+  background: var(--brand-blue);
+  color: white;
+  padding: 0 30px;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.brandCol .logoText {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+}
+
+.brandCol .logoText span {
+  color: var(--brand-orange);
+}
+
+.brandCol p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+}
+
+.socialIcon:hover {
+  background: var(--brand-orange);
+  color: white;
+}
+
+.linkCol h4, .contactCol h4 {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.linkCol ul {
+  list-style: none;
+}
+
+.linkCol li {
+  margin-bottom: 12px;
+}
+
+.linkCol a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.linkCol a:hover {
+  color: var(--brand-orange);
+  padding-left: 5px;
+}
+
+.contactCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 15px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.bottom {
+  border-top: 1px solid var(--metal-border);
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-light);
+  font-size: 0.8rem;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.bottomLinks a {
+  text-decoration: none;
+  color: var(--text-light);
+}
+
+@media (max-width: 1024px) {
+  .newsletter { flex-direction: column; text-align: center; gap: 30px; padding: 40px; }
+  .newsText h3 { text-align: center; }
+  .inputBox { width: 100%; flex: none; }
+  .grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
