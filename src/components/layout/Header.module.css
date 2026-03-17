@@ -1,170 +1,125 @@
 .header {
-  width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 1000;
-  box-shadow: var(--shadow-sm);
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  transition: background 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.topBar {
-  background-color: var(--secondary); /* Daka Yellow */
-  padding: 12px 0;
+.header.scrolled {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.topBarContent {
+.navRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  width: 100%;
+}
+
+.logoContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  transition: var(--transition-slow);
 }
 
 .logo {
-  height: 50px;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(247, 148, 29, 0.2));
 }
 
-.searchSection {
-  flex: 1;
+.menuBtn {
   display: flex;
   align-items: center;
-  gap: 12px;
-  max-width: 600px;
+  gap: 10px;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
-.categoryBtn {
+.right {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  color: var(--text-main);
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-.searchBar {
-  flex: 1;
-  display: flex;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-.searchBar input {
-  flex: 1;
-  border: none;
-  padding: 10px 16px;
-  outline: none;
-  font-size: 0.95rem;
-}
-
-.searchBtn {
-  background: transparent;
-  padding: 0 16px;
-  color: var(--primary);
-}
-
-.userSection {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.iconGroup {
-  display: flex;
   gap: 20px;
 }
 
-.userAction {
+.actions {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--primary);
-  cursor: pointer;
-}
-
-.actionText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.actionText span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.actionText strong {
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.utilIcons {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  color: var(--primary);
-}
-
-.cartIcon {
-  position: relative;
-  background: var(--primary);
+  gap: 15px;
   color: white;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
+}
+
+.icon {
   cursor: pointer;
+  width: 20px;
+  transition: var(--transition-fast);
+}
+
+.icon:hover {
+  color: var(--brand-orange);
+}
+
+.cart {
+  position: relative;
 }
 
 .badge {
   position: absolute;
   top: -8px;
   right: -8px;
-  background: var(--accent);
+  background: var(--brand-orange);
   color: white;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 2px 6px;
+  font-size: 0.6rem;
+  padding: 2px 5px;
   border-radius: 10px;
-  border: 2px solid var(--secondary);
 }
 
-.link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-main);
+.whatsappBtn {
+  background: var(--brand-orange);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  box-shadow: var(--glow-orange);
 }
 
 .mainNav {
-  background: white;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-color);
+  margin-top: 20px;
+  width: 100%;
 }
 
-.navLinks {
+.mainNav ul {
   display: flex;
-  gap: 24px;
+  justify-content: center;
+  gap: 40px;
 }
 
-.navLinks a {
+.mainNav a {
+  color: var(--text-secondary);
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
-.navLinks a:hover, .navLinks a.active {
-  color: var(--primary);
+.mainNav a:hover {
+  color: white;
 }
 
-@media (max-width: 1024px) {
-  .searchSection, .iconGroup {
+@media (max-width: 768px) {
+  .mainNav, .menuBtn span {
     display: none;
   }
 }

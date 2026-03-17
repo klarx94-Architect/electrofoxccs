@@ -1,73 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './Header.module.css';
 import logo from '../../assets/images/logo.jpg';
-import { Search, Menu, Bell, ShoppingCart, User, ShoppingBag } from 'lucide-react';
+import { ShoppingCart, Menu, Search, Headphones, Truck, ShieldCheck } from 'lucide-react';
 
 const Header = () => {
-  return (
-    <header className={styles.header}>
-      <div className={styles.topBar}>
-        <div className="container">
-          <div className={styles.topBarContent}>
-            <div className={styles.logoSection}>
-              <img src={logo} alt="Electrofox Logo" className={styles.logo} />
-            </div>
-            
-            <div className={styles.searchSection}>
-              <button className={styles.categoryBtn}>
-                <Menu size={20} />
-                <span>Categorías</span>
-              </button>
-              <div className={styles.searchBar}>
-                <input type="text" placeholder="¿Qué estás buscando hoy?" />
-                <button className={styles.searchBtn}>
-                  <Search size={20} />
-                </button>
-              </div>
-            </div>
+  const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-            <div className={styles.userSection}>
-              <div className={styles.iconGroup}>
-                <div className={styles.userAction}>
-                  <User size={24} />
-                  <div className={styles.actionText}>
-                    <span>Iniciar sesión</span>
-                    <strong>Mi cuenta</strong>
-                  </div>
-                </div>
-                <div className={styles.userAction}>
-                  <ShoppingBag size={24} />
-                  <div className={styles.actionText}>
-                    <span>Ver mis</span>
-                    <strong>Compras</strong>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.utilIcons}>
-                <Bell size={24} className={styles.icon} />
-                <div className={styles.cartIcon}>
-                  <ShoppingCart size={24} />
-                  <span className={styles.badge}>0</span>
-                </div>
+  useEffect(() => {
+    return scrollY.onChange((latest) => {
+      setIsScrolled(latest > 50);
+    });
+  }, [scrollY]);
+
+  const logoSize = useTransform(scrollY, [0, 200], [180, 50]);
+  const headerHeight = useTransform(scrollY, [0, 200], [180, 80]);
+
+  return (
+    <motion.header 
+      style={{ height: headerHeight }}
+      className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}
+    >
+      <div className="container">
+        <div className={styles.navRow}>
+          <div className={styles.left}>
+            <button className={styles.menuBtn}>
+              <Menu color="white" />
+              <span>Menu</span>
+            </button>
+          </div>
+
+          <motion.div style={{ width: logoSize }} className={styles.logoContainer}>
+            <img src={logo} alt="Electrofox" className={styles.logo} />
+          </motion.div>
+
+          <div className={styles.right}>
+            <div className={styles.actions}>
+              <Search className={styles.icon} />
+              <div className={styles.cart}>
+                <ShoppingCart className={styles.icon} />
+                <span className={styles.badge}>0</span>
               </div>
             </div>
+            <button className={styles.whatsappBtn}>
+              WhatsApp
+            </button>
           </div>
         </div>
+
+        {!isScrolled && (
+          <motion.nav 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={styles.mainNav}
+          >
+            <ul>
+              <li><a href="#">LINEA BLANCA</a></li>
+              <li><a href="#">TELEVISORES</a></li>
+              <li><a href="#">TECNOLOGÍA</a></li>
+              <li><a href="#">OFERTAS</a></li>
+              <li><a href="#">TIENDAS</a></li>
+            </ul>
+          </motion.nav>
+        )}
       </div>
-      
-      <nav className={styles.mainNav}>
-        <div className="container">
-          <ul className={styles.navLinks}>
-            <li><a href="#" className={styles.active}>Ofertas</a></li>
-            <li><a href="#">Precios especiales</a></li>
-            <li><a href="#">Tendencias</a></li>
-            <li><a href="#">Marcas top</a></li>
-            <li><a href="#">Nuestros servicios</a></li>
-            <li><a href="#">Tiendas</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    </motion.header>
   );
 };
 
