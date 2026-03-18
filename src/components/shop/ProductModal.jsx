@@ -51,7 +51,7 @@ const ProductModal = ({ product, onClose }) => {
       setMessages([
         {
           from: 'agent',
-          text: `¡Hola! 👋 Soy tu asesor de Electrofox. ¿Tienes alguna pregunta sobre el **${product.name}**? Estoy aquí para ayudarte.`,
+          text: `¡Hola! 👋 Soy tu asesor de Electrofox. He preparado los detalles técnicos del **${product.name}** para ti. ¿Te gustaría revisarlos antes de que hablemos de la compra? 😊`,
         },
       ]);
       setInput('');
@@ -145,14 +145,14 @@ const ProductModal = ({ product, onClose }) => {
                   <span className={styles.bs}>Bs. {product.price_bs.toLocaleString()}</span>
                 </div>
 
-                {/* Specs accordion */}
+                {/* Specs accordion — PRIMARY ACTION */}
                 <div ref={specsRef} className={styles.specsWrapper}>
                   <button 
                     className={`${styles.specsToggle} ${specsOpen ? styles.specsActive : ''}`} 
                     onClick={() => setSpecsOpen(!specsOpen)}
                   >
-                    <span>{specsOpen ? 'OCULTAR' : 'VER'} ESPECIFICACIONES TÉCNICAS</span>
-                    <ChevronDown size={18} className={specsOpen ? styles.rotated : ''} />
+                    <span>{specsOpen ? 'CERRAR' : 'REVISAR ESPECIFICACIONES TÉCNICAS'}</span>
+                    <ChevronDown size={20} className={specsOpen ? styles.rotated : ''} />
                   </button>
                   <AnimatePresence>
                     {specsOpen && (
@@ -163,26 +163,26 @@ const ProductModal = ({ product, onClose }) => {
                         transition={{ duration: 0.3 }}
                         className={styles.specsBox}
                       >
-                      <div className={styles.specGrid}>
-                        {Object.entries(product.specs).map(([k, v]) => (
-                          <div key={k} className={styles.specItem}>
-                            <span className={styles.specKey}>{k.toUpperCase()}</span>
-                            <span className={styles.specVal}>{v}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                        <div className={styles.specGrid}>
+                          {Object.entries(product.specs).map(([k, v]) => (
+                            <div key={k} className={styles.specItem}>
+                              <span className={styles.specKey}>{k.toUpperCase()}</span>
+                              <span className={styles.specVal}>{v}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
-                {/* WhatsApp CTA — always visible */}
+                {/* WhatsApp CTA — SECONDARY/FOLLOW-UP ACTION */}
                 <button 
                   className={`${styles.whatsappBtn} ${specsOpen ? styles.whatsappBtnFeatured : ''}`} 
                   onClick={handleWhatsApp}
                 >
                   <ShoppingBag size={18} />
-                  ¡Quiero comprar este producto!
+                  {specsOpen ? 'INICIAR COMPRA POR WHATSAPP' : 'Contactar por WhatsApp'}
                 </button>
               </div>
             </div>
