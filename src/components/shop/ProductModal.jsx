@@ -4,34 +4,36 @@ import styles from './ProductModal.module.css';
 import { X, MessageCircle, Send, ShoppingBag, ChevronDown } from 'lucide-react';
 
 /* ── Respuestas automáticas del asesor ── */
-const generateReply = (question, product) => {
+const generateReply = (question, product, specsOpen) => {
   const q = question.toLowerCase();
 
+  if (q.includes('especificaci') || q.includes('característica') || q.includes('detalle') || q.includes('técnico') || q.includes('tecnico')) {
+    const specsList = Object.entries(product.specs).slice(0, 3).map(([k, v]) => `${k.toUpperCase()}: ${v}`).join(', ');
+    return `¡Por supuesto! Algunas de las especificaciones del ${product.name} son: ${specsList}. Puedes ver todas las características técnicas haciendo clic en el botón **"VER ESPECIFICACIONES TÉCNICAS"** justo arriba de este chat. 😊`;
+  }
+
   if (q.includes('precio') || q.includes('costo') || q.includes('vale') || q.includes('cuánto'))
-    return `El ${product.name} está disponible por $${product.price_usd.toLocaleString()} (Bs. ${product.price_bs.toLocaleString()}). Manejamos los mejores precios del mercado y aceptamos varias formas de pago. 😊`;
+    return `El ${product.name} está disponible por $${product.price_usd.toLocaleString()} (Bs. ${product.price_bs.toLocaleString()}). Manejamos los mejores precios del mercado. Si ya estás listo, puedes usar el botón de **"¡Quiero comprar!"** para ir a WhatsApp. 😊`;
 
   if (q.includes('garantía') || q.includes('garantia'))
-    return `¡Claro! El ${product.name} incluye garantía oficial de ${product.specs?.garantia ?? 'fábrica'}. Cualquier inconveniente, estamos para ayudarte.`;
+    return `¡Claro! El ${product.name} incluye garantía oficial de ${product.specs?.garantia ?? 'fábrica'}. Si deseas más detalles legales o iniciar la compra, estamos listos por WhatsApp.`;
 
   if (q.includes('envío') || q.includes('envio') || q.includes('entrega') || q.includes('llevan'))
-    return `Sí, hacemos entregas en toda Venezuela. Dependiendo tu zona, el tiempo puede variar entre 24 y 72 horas hábiles. 🚚`;
+    return `Sí, hacemos entregas en toda Venezuela (24-72h). ¿Deseas que coordinemos el envío de tu ${product.name} por WhatsApp? 🚚`;
 
   if (q.includes('pago') || q.includes('zelle') || q.includes('efectivo') || q.includes('transferencia'))
-    return `Aceptamos Zelle, transferencias en bolívares, Banesco online, pago móvil y efectivo USD o EUR. Te orientamos con el método que más te convenga.`;
+    return `Aceptamos Zelle, bolívares, pago móvil y efectivo de forma segura. ¿Te gustaría recibir los datos de pago exactos por WhatsApp para concretar?`;
 
   if (q.includes('disponib') || q.includes('stock') || q.includes('hay'))
-    return `Para confirmar disponibilidad exacta te recomiendo continuar por WhatsApp, donde un asesor te responde de inmediato. ¡Normalmente tenemos stock! 😊`;
+    return `Normalmente tenemos stock, pero para asegurar tu unidad, te recomiendo contactarnos ahora mismo por WhatsApp. ¡Te reservamos el ${product.name} de inmediato! 😊`;
 
   if (q.includes('voltaje') || q.includes('110') || q.includes('220') || q.includes('electricidad'))
-    return `El ${product.name} opera a ${product.specs?.voltaje ?? '110V'}, perfecto para Venezuela. No necesitas transformador.`;
-
-  if (q.includes('color') || q.includes('medida') || q.includes('tamaño') || q.includes('dimensión'))
-    return `Las especificaciones técnicas están justo arriba del chat. Si necesitas más detalles, con gusto te ayudamos por WhatsApp.`;
+    return `El ${product.name} opera a ${product.specs?.voltaje ?? '110V'}, ideal para Venezuela. ¿Quieres que te lo enviemos hoy? ⚡`;
 
   if (q.includes('hola') || q.includes('buenos') || q.includes('buenas'))
-    return `¡Hola! Soy el asesor de Electrofox. Estoy aquí para resolver todas tus dudas sobre el ${product.name}. ¿En qué puedo ayudarte? 😊`;
+    return `¡Hola! Soy tu asesor de Electrofox. Estoy aquí para resolver tus dudas técnicas sobre el ${product.name} o ayudarte a completar tu compra. ¿Qué información necesitas? 😊`;
 
-  return `Gracias por tu pregunta. Para darte información más precisa, te recomiendo continuar con uno de nuestros asesores por WhatsApp. ¡Te respondemos en minutos! 📲`;
+  return `Gracias por tu pregunta. Para darte información final y cerrar tu pedido, te invito a presionar el botón de **"¡Quiero comprar!"**. ¡Nuestros asesores humanos te esperan en WhatsApp! 📲`;
 };
 
 const ProductModal = ({ product, onClose }) => {
@@ -84,7 +86,7 @@ const ProductModal = ({ product, onClose }) => {
       setTyping(false);
       setMessages((prev) => [
         ...prev,
-        { from: 'agent', text: generateReply(userMsg, product) },
+        { from: 'agent', text: generateReply(userMsg, product, specsOpen) },
       ]);
     }, 1100);
   };
@@ -104,10 +106,10 @@ const ProductModal = ({ product, onClose }) => {
   };
 
   const quickQuestions = [
-    '¿Cómo es el proceso de pago?',
+    'Ver especificaciones técnicas',
+    '¿Tienen garantía?',
     '¿Hacen envíos?',
-    '¿Qué garantía incluye?',
-    '¿Hay disponibilidad?',
+    '¿Qué métodos de pago aceptan?',
   ];
 
   return (
@@ -175,7 +177,10 @@ const ProductModal = ({ product, onClose }) => {
                 </div>
 
                 {/* WhatsApp CTA — always visible */}
-                <button className={styles.whatsappBtn} onClick={handleWhatsApp}>
+                <button 
+                  className={`${styles.whatsappBtn} ${specsOpen ? styles.whatsappBtnFeatured : ''}`} 
+                  onClick={handleWhatsApp}
+                >
                   <ShoppingBag size={18} />
                   ¡Quiero comprar este producto!
                 </button>
@@ -221,16 +226,20 @@ const ProductModal = ({ product, onClose }) => {
                     key={i}
                     className={styles.quickBtn}
                     onClick={() => {
+                      const isSpecsReq = q.includes('especificaciones');
                       setInput(q);
                       setTimeout(() => {
                         setMessages((prev) => [...prev, { from: 'user', text: q }]);
                         setInput('');
+                        if (isSpecsReq && !specsOpen) {
+                          setSpecsOpen(true);
+                        }
                         setTyping(true);
                         setTimeout(() => {
                           setTyping(false);
                           setMessages((prev) => [
                             ...prev,
-                            { from: 'agent', text: generateReply(q, product) },
+                            { from: 'agent', text: generateReply(q, product, specsOpen) },
                           ]);
                         }, 1100);
                       }, 100);
