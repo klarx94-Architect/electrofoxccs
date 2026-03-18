@@ -40,6 +40,8 @@ const ProductModal = ({ product, onClose }) => {
   const [typing, setTyping] = useState(false);
   const [specsOpen, setSpecsOpen] = useState(false);
   const chatEndRef = useRef(null);
+  const specsRef = useRef(null);
+  const leftPanelRef = useRef(null);
 
   // Mensaje de bienvenida cuando se abre un producto
   useEffect(() => {
@@ -58,6 +60,17 @@ const ProductModal = ({ product, onClose }) => {
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, typing]);
+
+  useEffect(() => {
+    if (specsOpen && specsRef.current) {
+      // Usamos el contenedor padre (left) para scrollear internamente
+      const topPos = specsRef.current.offsetTop;
+      leftPanelRef.current?.scrollTo({
+        top: topPos - 20,
+        behavior: 'smooth'
+      });
+    }
+  }, [specsOpen]);
 
   if (!product) return null;
 
@@ -115,7 +128,7 @@ const ProductModal = ({ product, onClose }) => {
 
           <div className={styles.layout}>
             {/* LEFT — Product info */}
-            <div className={styles.left}>
+            <div className={styles.left} ref={leftPanelRef}>
               <div className={styles.visual}>
                 <img src={product.image} alt={product.name} className={styles.productImg} />
                 {product.badge && <span className={styles.badge}>{product.badge}</span>}
@@ -131,19 +144,23 @@ const ProductModal = ({ product, onClose }) => {
                 </div>
 
                 {/* Specs accordion */}
-                <button className={styles.specsToggle} onClick={() => setSpecsOpen(!specsOpen)}>
-                  Especificaciones técnicas
-                  <ChevronDown size={16} className={specsOpen ? styles.rotated : ''} />
-                </button>
-                <AnimatePresence>
-                  {specsOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className={styles.specsBox}
-                    >
+                <div ref={specsRef} className={styles.specsWrapper}>
+                  <button 
+                    className={`${styles.specsToggle} ${specsOpen ? styles.specsActive : ''}`} 
+                    onClick={() => setSpecsOpen(!specsOpen)}
+                  >
+                    <span>{specsOpen ? 'OCULTAR' : 'VER'} ESPECIFICACIONES TÉCNICAS</span>
+                    <ChevronDown size={18} className={specsOpen ? styles.rotated : ''} />
+                  </button>
+                  <AnimatePresence>
+                    {specsOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className={styles.specsBox}
+                      >
                       <div className={styles.specGrid}>
                         {Object.entries(product.specs).map(([k, v]) => (
                           <div key={k} className={styles.specItem}>
@@ -155,6 +172,7 @@ const ProductModal = ({ product, onClose }) => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+                </div>
 
                 {/* WhatsApp CTA — always visible */}
                 <button className={styles.whatsappBtn} onClick={handleWhatsApp}>

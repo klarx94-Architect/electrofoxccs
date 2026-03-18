@@ -134,24 +134,46 @@
 }
 
 /* Specs accordion */
+.specsWrapper {
+  margin-top: 10px;
+}
+
 .specsToggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 0;
-  background: none;
-  border: none;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border: 2px solid var(--metal-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 0.8px;
   cursor: pointer;
   text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.specsToggle svg { transition: transform 0.3s; }
+
+.specsToggle:hover {
+  background: white;
+  border-color: var(--brand-orange);
+  color: var(--brand-orange);
+  box-shadow: 0 10px 25px rgba(255, 85, 0, 0.1);
+}
+
+.specsActive {
+  background: var(--brand-orange);
+  border-color: var(--brand-orange);
+  color: #fff !important;
+  box-shadow: 0 10px 25px rgba(255, 85, 0, 0.25);
+  margin-bottom: 5px;
+}
+
+.specsToggle svg { 
+  transition: transform 0.4s; 
+}
 .rotated { transform: rotate(-180deg); }
 
 .specsBox { overflow: hidden; }
@@ -159,20 +181,33 @@
 .specGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 14px 0;
+  gap: 12px;
+  padding: 20px;
+  background: #fdfdfd;
+  border: 1px solid #f0f0f0;
+  border-radius: var(--radius-md);
+  margin-bottom: 15px;
 }
-.specItem { display: flex; flex-direction: column; gap: 2px; }
+.specItem { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 4px;
+  border-bottom: 1px solid #f8f8f8;
+  padding-bottom: 8px;
+}
+.specItem:last-child { border-bottom: none; }
 .specKey {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 1px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--text-light);
+  letter-spacing: 1.2px;
 }
-.specVal { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
+.specVal { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
 
 /* WhatsApp CTA */
 .whatsappBtn {
+  position: sticky;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,14 +216,15 @@
   color: #fff;
   font-weight: 800;
   font-size: 0.92rem;
-  padding: 15px 20px;
+  padding: 18px 20px;
   border-radius: 14px;
   border: none;
   cursor: pointer;
   transition: all 0.25s;
-  margin-top: auto;
   letter-spacing: 0.2px;
-  box-shadow: 0 6px 20px rgba(37,211,102,0.25);
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.05), 0 6px 20px rgba(37,211,102,0.25);
+  margin-top: 10px;
+  z-index: 10;
 }
 .whatsappBtn:hover {
   background: #1ab852;
