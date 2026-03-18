@@ -166,6 +166,17 @@
 .specsActive {
   background: #333 !important; /* Cambia a gris oscuro al abrir para diferenciar */
   box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  transform: translateY(0) !important;
+}
+
+.pulse {
+  animation: specsPulse 2s infinite ease-in-out;
+}
+
+@keyframes specsPulse {
+  0% { transform: scale(1); box-shadow: 0 10px 25px rgba(255, 85, 0, 0.2); }
+  50% { transform: scale(1.02); box-shadow: 0 15px 35px rgba(255, 85, 0, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 10px 25px rgba(255, 85, 0, 0.2); }
 }
 
 .specsToggle svg { 
@@ -200,6 +211,28 @@
   letter-spacing: 1.2px;
 }
 .specVal { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
+
+.specsMobileHeader {
+  display: none;
+  padding: 15px 20px 5px;
+  background: #fff;
+  border-bottom: 2px solid var(--brand-orange);
+  margin-bottom: 15px;
+}
+.specsMobileHeader h3 {
+  font-size: 0.95rem;
+  font-weight: 900;
+  margin: 0 0 5px;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+.specsMobilePrice {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.specsMobilePrice .usd { font-size: 1.2rem; font-weight: 900; color: var(--brand-orange); }
+.specsMobilePrice .bs { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
 
 /* WhatsApp CTA — Dynamic Hierachy */
 .whatsappBtn {
@@ -434,18 +467,22 @@
     flex-shrink: 0;
   }
   .visual {
-    padding: 15px;
-    min-height: 160px;
+    padding: 10px;
+    min-height: 120px; /* Reducción drástica */
   }
   .productImg { 
-    max-height: 140px; 
+    max-height: 100px; /* Reducción drástica */
   }
   .info {
-    padding: 12px 20px 20px;
-    gap: 8px;
+    padding: 8px 16px 16px; /* Más compacto */
+    gap: 4px;
   }
-  .name { font-size: 1.1rem; }
-  .usd { font-size: 1.4rem; }
+  .brand { font-size: 0.65rem; }
+  .name { font-size: 1.05rem; }
+  .usd { font-size: 1.35rem; }
+  .prices { margin-bottom: 4px; }
+  
+  .specsMobileHeader { display: block; } /* Solo móvil */
   .right { 
     min-height: 0; 
     flex: 1;

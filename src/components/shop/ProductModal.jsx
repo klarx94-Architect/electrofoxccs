@@ -44,6 +44,7 @@ const ProductModal = ({ product, onClose }) => {
   const chatEndRef = useRef(null);
   const specsRef = useRef(null);
   const leftPanelRef = useRef(null);
+  const [pulseActive, setPulseActive] = useState(true);
 
   // Mensaje de bienvenida cuando se abre un producto
   useEffect(() => {
@@ -148,8 +149,11 @@ const ProductModal = ({ product, onClose }) => {
                 {/* Specs accordion — PRIMARY ACTION */}
                 <div ref={specsRef} className={styles.specsWrapper}>
                   <button 
-                    className={`${styles.specsToggle} ${specsOpen ? styles.specsActive : ''}`} 
-                    onClick={() => setSpecsOpen(!specsOpen)}
+                    className={`${styles.specsToggle} ${specsOpen ? styles.specsActive : ''} ${pulseActive ? styles.pulse : ''}`} 
+                    onClick={() => {
+                      setSpecsOpen(!specsOpen);
+                      setPulseActive(false);
+                    }}
                   >
                     <span>{specsOpen ? 'CERRAR' : 'REVISAR ESPECIFICACIONES TÉCNICAS'}</span>
                     <ChevronDown size={20} className={specsOpen ? styles.rotated : ''} />
@@ -163,6 +167,15 @@ const ProductModal = ({ product, onClose }) => {
                         transition={{ duration: 0.3 }}
                         className={styles.specsBox}
                       >
+                        {/* Info duplicada solo para móvil para no perder contexto al scrollear */}
+                        <div className={styles.specsMobileHeader}>
+                          <h3>{product.name}</h3>
+                          <div className={styles.specsMobilePrice}>
+                            <span className={styles.usd}>${product.price_usd.toLocaleString()}</span>
+                            <span className={styles.bs}>Bs. {product.price_bs.toLocaleString()}</span>
+                          </div>
+                        </div>
+
                         <div className={styles.specGrid}>
                           {Object.entries(product.specs).map(([k, v]) => (
                             <div key={k} className={styles.specItem}>
