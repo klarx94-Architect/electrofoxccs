@@ -1,0 +1,85 @@
+.tickerSection {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 28px 0;
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+}
+
+/* Degrade en los bordes para fundir el carrusel */
+.tickerSection::before,
+.tickerSection::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tickerSection::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+.tickerSection::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+.tickerContainer {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.tickerWrapper {
+  display: flex;
+}
+
+.tickerTrack {
+  display: flex;
+  animation: scrollInfinite 30s linear infinite;
+  white-space: nowrap;
+}
+
+.brandItem {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 4px;
+  color: #111;
+  opacity: 0.8;
+  margin: 0 40px;
+  text-transform: uppercase;
+  transition: var(--transition-pro);
+}
+
+.brandItem:hover {
+  color: var(--brand-orange);
+  cursor: default;
+}
+
+@keyframes scrollInfinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); } /* Mueve un tercio ya que están triplicados */
+}
+
+@media (max-width: 768px) {
+  .brandItem {
+    font-size: 1.1rem;
+    margin: 0 24px;
+    letter-spacing: 2px;
+  }
+  .tickerSection { padding: 20px 0; }
+}
+
+@media (max-width: 480px) {
+  .brandItem {
+    font-size: 0.9rem;
+    margin: 0 16px;
+    letter-spacing: 1px;
+  }
+}

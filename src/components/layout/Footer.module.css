@@ -46,13 +46,18 @@
 }
 
 .inputBox button {
-  background: var(--brand-blue);
+  background: var(--brand-dark);
   color: white;
   padding: 0 30px;
   border-radius: var(--radius-md);
   font-weight: 800;
   font-size: 0.8rem;
   letter-spacing: 1px;
+  transition: var(--transition-pro);
+}
+
+.inputBox button:hover {
+  background: var(--brand-orange);
 }
 
 .grid {

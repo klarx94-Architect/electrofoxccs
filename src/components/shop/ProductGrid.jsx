@@ -14,12 +14,11 @@ const ProductCard = ({ product }) => {
         <span className={styles.brand}>{product.brand}</span>
         <h4 className={styles.name}>{product.name}</h4>
         <div className={styles.priceSection}>
-          <div className={styles.priceUsd}>US$ {product.price_usd.toLocaleString()}</div>
-          <div className={styles.priceBs}>Bs. {product.price_bs.toLocaleString()}</div>
+          <div className={styles.priceUsd}>US$ {product.price_usd.toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
+          <div className={styles.priceBs}>Bs. {product.price_bs.toLocaleString('es-VE', {minimumFractionDigits: 2})}</div>
         </div>
         <button className={styles.addBtn}>
-          <ShoppingCart size={18} />
-          Agregar al carrito
+          VER DETALLES
         </button>
       </div>
     </div>

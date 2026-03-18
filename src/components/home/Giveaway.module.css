@@ -1,0 +1,278 @@
+.section {
+  position: relative;
+  padding: 100px 0;
+  background: #08080E;
+  overflow: hidden;
+}
+
+/* === WOW Background === */
+.orbOrange {
+  position: absolute;
+  top: -100px;
+  right: -80px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,85,0,0.28) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: floatA 7s ease-in-out infinite alternate;
+}
+
+.orbPurple {
+  position: absolute;
+  bottom: -100px;
+  left: -80px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(98,0,234,0.30) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: floatB 9s ease-in-out infinite alternate;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatA {
+  from { transform: scale(1) translate(0,0); }
+  to   { transform: scale(1.2) translate(-30px, 40px); }
+}
+@keyframes floatB {
+  from { transform: scale(1) translate(0,0); }
+  to   { transform: scale(1.25) translate(40px, -30px); }
+}
+
+/* === Content === */
+.section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,85,0,0.15);
+  border: 1px solid rgba(255,85,0,0.4);
+  color: var(--brand-orange);
+  padding: 7px 18px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.title span {
+  color: var(--brand-orange);
+  display: inline;
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.65);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subtitle strong {
+  color: #fff;
+}
+
+/* === Prize Cards === */
+.prizes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.prizeCard {
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.prizeCard:hover {
+  border-color: rgba(255,85,0,0.5);
+  box-shadow: 0 0 40px rgba(255,85,0,0.2);
+}
+
+.prizeTag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  background: var(--brand-orange);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.prizeImg {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.prizeInfo {
+  padding: 20px 24px 24px;
+}
+
+.prizeInfo h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.prizeInfo p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  text-align: left;
+}
+
+.glowCard {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(255,85,0,0.08) 100%);
+  pointer-events: none;
+}
+
+/* === How To === */
+.howTo {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 50px;
+}
+
+.howTitle {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 160px;
+}
+
+.stepIcon {
+  width: 52px;
+  height: 52px;
+  background: rgba(255,85,0,0.15);
+  border: 1px solid rgba(255,85,0,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-orange);
+}
+
+/* === CTA === */
+.cta {
+  text-align: center;
+}
+
+.igBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #E1306C, #F77737, #FCAF45);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 18px 48px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 35px rgba(225,48,108,0.4);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.igBtn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 50px rgba(225,48,108,0.6);
+}
+
+.ctaNote {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.88rem;
+}
+
+.ctaNote strong {
+  color: rgba(255,255,255,0.85);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .section { padding: 70px 0; }
+  .title { font-size: 2.8rem; }
+  .prizes { grid-template-columns: 1fr; }
+  .steps { gap: 30px; }
+  .howTo { padding: 28px 20px; }
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 2.2rem; letter-spacing: -1px; }
+  .igBtn { padding: 14px 32px; font-size: 0.9rem; }
+}

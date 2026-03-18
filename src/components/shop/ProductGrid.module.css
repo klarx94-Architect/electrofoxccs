@@ -37,33 +37,35 @@
 
 .card {
   background: white;
-  border-radius: var(--radius-md);
-  padding: 16px;
+  border-radius: var(--radius-lg);
+  padding: 20px;
   position: relative;
-  transition: var(--transition);
-  border: 1px solid transparent;
+  transition: var(--transition-pro);
+  border: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.01);
 }
 
 .card:hover {
-  border-color: var(--primary-light);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  transform: translateY(-6px);
 }
 
 .productBadge {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--accent);
+  top: 15px;
+  left: 15px;
+  background: var(--brand-dark);
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 800;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
   text-transform: uppercase;
   z-index: 10;
+  letter-spacing: 1px;
 }
 
 .imageWrapper {
@@ -113,36 +115,44 @@
 }
 
 .priceSection {
+  margin-top: auto;
   margin-bottom: 16px;
 }
 
 .priceUsd {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  color: var(--primary);
+  color: var(--text-main);
+  letter-spacing: -0.5px;
 }
 
 .priceBs {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-light);
 }
 
 .addBtn {
   width: 100%;
-  background: var(--secondary);
-  color: var(--text-main);
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.9rem;
+  background: var(--brand-orange);
+  color: white;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  border: none;
+  transition: var(--transition-pro);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 85, 0, 0.2);
 }
 
 .addBtn:hover {
-  background: var(--primary);
+  background: #E64A00;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(255, 85, 0, 0.4);
 }

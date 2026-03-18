@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './Header.module.css';
-import logo from '../../assets/images/logo.jpg';
+import logo from '../../assets/images/logo.png';
 import { ShoppingCart, Menu, Search, User } from 'lucide-react';
 
 const Header = () => {
@@ -22,25 +22,21 @@ const Header = () => {
     >
       <div className="container">
         <div className={styles.navRow}>
-          <div className={styles.left}>
-            <button className={styles.searchBtn}>
-              <Search size={20} />
-            </button>
-            <nav className={styles.navLinks}>
-              <a href="#">LINEA BLANCA</a>
-              <a href="#">TECNOLOGÍA</a>
-            </nav>
-          </div>
+          <nav className={styles.navLinks}>
+            <a href="#">LINEA BLANCA</a>
+            <a href="#">TECNOLOGÍA</a>
+            <a href="#">OFERTAS</a>
+          </nav>
 
           <div className={styles.logoWrapper}>
             <img src={logo} alt="Electrofox" className={styles.logo} />
           </div>
 
           <div className={styles.right}>
-            <nav className={styles.navLinks}>
-              <a href="#">OFERTAS</a>
-              <a href="#">NOSOTROS</a>
-            </nav>
+            <a href="#" className={styles.navItem}>NOSOTROS</a>
+            <button className={styles.searchBtn}>
+              <Search size={20} />
+            </button>
             <div className={styles.actions}>
               <User size={20} />
               <div className={styles.cart}>
