@@ -135,18 +135,16 @@ const ProductModal = ({ product, onClose }) => {
               <div className={styles.visual}>
                 <img src={product.image} alt={product.name} className={styles.productImg} />
                 {product.badge && <span className={styles.badge}>{product.badge}</span>}
+                
+                {/* Título flotante solo para móvil/contexto rápido */}
+                <div className={styles.mobileHeaderOverlay}>
+                  <span className={styles.brand}>{product.brand}</span>
+                  <h3 className={styles.name}>{product.name}</h3>
+                </div>
               </div>
 
               <div className={styles.info}>
-                <span className={styles.brand}>{product.brand}</span>
-                <h2 className={styles.name}>{product.name}</h2>
-
-                <div className={styles.prices}>
-                  <span className={styles.usd}>${product.price_usd.toLocaleString()}</span>
-                  <span className={styles.bs}>Bs. {product.price_bs.toLocaleString()}</span>
-                </div>
-
-                {/* Specs accordion — PRIMARY ACTION */}
+                {/* Specs accordion — THE ABSOLUTE PRIORITY */}
                 <div ref={specsRef} className={styles.specsWrapper}>
                   <button 
                     className={`${styles.specsToggle} ${specsOpen ? styles.specsActive : ''} ${pulseActive ? styles.pulse : ''}`} 
@@ -167,7 +165,7 @@ const ProductModal = ({ product, onClose }) => {
                         transition={{ duration: 0.3 }}
                         className={styles.specsBox}
                       >
-                        {/* Info duplicada solo para móvil para no perder contexto al scrollear */}
+                        {/* Info duplicada para no perder contexto al scrollear */}
                         <div className={styles.specsMobileHeader}>
                           <h3>{product.name}</h3>
                           <div className={styles.specsMobilePrice}>
@@ -187,6 +185,17 @@ const ProductModal = ({ product, onClose }) => {
                       </motion.div>
                     )}
                   </AnimatePresence>
+                </div>
+
+                <div className={styles.prices}>
+                  <span className={styles.usd}>${product.price_usd.toLocaleString()}</span>
+                  <span className={styles.bs}>Bs. {product.price_bs.toLocaleString()}</span>
+                </div>
+
+                {/* Desktop Titles (Hidden on small mobile if overlay is active) */}
+                <div className={styles.desktopOnlyTitles}>
+                  <span className={styles.brand}>{product.brand}</span>
+                  <h2 className={styles.name}>{product.name}</h2>
                 </div>
 
                 {/* WhatsApp CTA — SECONDARY/FOLLOW-UP ACTION */}
