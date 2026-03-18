@@ -204,7 +204,7 @@ const ProductModal = ({ product, onClose }) => {
                   onClick={handleWhatsApp}
                 >
                   <ShoppingBag size={18} />
-                  {specsOpen ? 'INICIAR COMPRA POR WHATSAPP' : 'Contactar por WhatsApp'}
+                  {specsOpen ? 'FINALIZAR COMPRA POR WHATSAPP' : 'Comprar por WhatsApp'}
                 </button>
               </div>
             </div>

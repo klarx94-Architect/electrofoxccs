@@ -487,11 +487,10 @@
     gap: 8px;
   }
   .prices { 
-    order: 2; /* Precio después de las specs */
     margin-top: 5px;
   }
   .specsWrapper {
-    order: 1; /* Specs PRIMERO */
+    /* Sin order para seguir el JSX */
   }
   
   .specsMobileHeader { display: block; } /* Solo móvil */
