@@ -81,16 +81,36 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
+    pointer-events: none; /* Only the children should be clickable if needed, but here it's fine */
+  }
+  .whatsapp-float-container > * {
+    pointer-events: auto;
   }
   .whatsapp-tooltip::after {
-    display: none;
+    border-width: 6px 6px 0 6px;
+    border-color: white transparent transparent transparent;
+    right: 22px;
+    bottom: -6px;
+    top: auto;
+    left: auto;
+    transform: none;
   }
   .whatsapp-tooltip {
-    font-size: 0.75rem;
-    padding: 10px 16px;
+    font-size: 0.7rem;
+    padding: 8px 12px;
+    max-width: 180px;
+    text-align: right;
+    line-height: 1.2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
   .whatsapp-float {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-tooltip {
+    display: none; /* Hide tooltip on very small screens to avoid clutter */
   }
 }

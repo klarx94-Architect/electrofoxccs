@@ -364,24 +364,65 @@
   background: #fff;
 }
 
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 700px) {
-  .modal { max-height: 95vh; border-radius: 18px; }
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .modal { 
+    height: 94vh; 
+    max-height: 94vh; 
+    width: 96vw;
+    border-radius: 20px; 
+  }
   .layout {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-    overflow-y: auto;
+    flex-direction: column;
   }
-  .left { max-height: 50vh; border-right: none; border-bottom: 1px solid #eee; }
-  .right { min-height: 320px; }
-  .productImg { max-height: 140px; }
-  .name { font-size: 1.15rem; }
-  .usd { font-size: 1.5rem; }
+  .left { 
+    max-height: 42vh; 
+    border-right: none; 
+    border-bottom: 1px solid #eee; 
+    flex-shrink: 0;
+  }
+  .visual {
+    padding: 15px;
+    min-height: 160px;
+  }
+  .productImg { 
+    max-height: 140px; 
+  }
+  .info {
+    padding: 12px 20px 20px;
+    gap: 8px;
+  }
+  .name { font-size: 1.1rem; }
+  .usd { font-size: 1.4rem; }
+  .right { 
+    min-height: 0; 
+    flex: 1;
+  }
+  .chatHeader {
+    padding: 10px 16px;
+  }
+  .agentAvatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  .agentName { font-size: 0.85rem; }
 }
 
 @media (max-width: 480px) {
   .backdrop { padding: 8px; }
-  .info { padding: 16px 16px 20px; }
-  .chatHeader { padding: 12px 14px; }
-  .chatMessages { padding: 12px; }
+  .modal { width: 100%; height: 100%; border-radius: 0; max-height: 100vh; }
+  .left { max-height: 38vh; }
+  .visual { min-height: 140px; }
+  .productImg { max-height: 120px; }
+  .info { padding: 10px 16px 16px; }
+  .name { font-size: 1rem; }
+  .usd { font-size: 1.25rem; }
+  .chatMessages { padding: 10px; gap: 8px; }
+  .bubble { font-size: 0.8rem; padding: 8px 12px; }
+  .quickQuestions { padding: 6px 10px; }
+  .chatInput { padding: 8px 10px; }
+  .sendBtn { width: 34px; height: 34px; }
 }

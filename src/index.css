@@ -40,12 +40,13 @@
   -webkit-font-smoothing: antialiased;
 }
 
-body {
+html, body {
   font-family: 'Outfit', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-main);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   line-height: 1.6;
+  width: 100%;
 }
 
 h1, h2, h3, h4 {
@@ -66,10 +67,16 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+  }
   .container { padding: 0 18px; }
 }
 
 @media (max-width: 480px) {
+  :root {
+    --header-height: 64px;
+  }
   .container { padding: 0 12px; }
   h1, h2, h3, h4 { letter-spacing: -0.01em; }
 }

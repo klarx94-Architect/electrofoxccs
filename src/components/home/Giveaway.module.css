@@ -265,14 +265,19 @@
 
 /* === Responsive === */
 @media (max-width: 768px) {
-  .section { padding: 70px 0; }
-  .title { font-size: 2.8rem; }
-  .prizes { grid-template-columns: 1fr; }
-  .steps { gap: 30px; }
-  .howTo { padding: 28px 20px; }
+  .section { padding: 60px 0; }
+  .title { font-size: 2.2rem; }
+  .prizes { grid-template-columns: 1fr; gap: 30px; }
+  .prizeCard { height: auto; }
+  .prizeImg { height: 220px; }
+  .steps { gap: 20px; flex-direction: column; }
+  .step { max-width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+  .step:last-child { border-bottom: none; }
+  .howTo { padding: 30px 20px; }
 }
 
 @media (max-width: 480px) {
-  .title { font-size: 2.2rem; letter-spacing: -1px; }
-  .igBtn { padding: 14px 32px; font-size: 0.9rem; }
+  .title { font-size: 1.8rem; letter-spacing: -1px; }
+  .igBtn { width: 100%; padding: 14px 24px; font-size: 0.9rem; justify-content: center; }
+  .stepIcon { width: 44px; height: 44px; }
 }
